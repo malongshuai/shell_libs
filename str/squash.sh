@@ -6,8 +6,8 @@
 # ! Desc: squash sequences char in string
 # ! Usage: squash [-v VAR] [-s] [Squash_char] str
 # !   Default: trim leading and trailing specified Squash_char,
-# !            then squash those Suqash_cahr(s) to single
-# !   -s: don't trim leading and trailing beforce squashing
+# !            then squash those Squash_char(s) to single
+# !   -s: don't trim leading and trailing before squashing
 # !   -v: assign squashed str to shell variable VAR
 # !  Squash_char: specify which char will be squashed,
 # !               only take the first char in Squash_char
@@ -70,7 +70,7 @@ squash(){
 
 
   if [ $var_flag__ -eq 1 ];then
-    printf -v $var_name__ "%s" "${str__}"
+    printf -v "$var_name__" "%s" "${str__}"
   else
     printf "%s" "${str__}"
   fi

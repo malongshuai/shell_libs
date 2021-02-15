@@ -188,6 +188,7 @@ export -f extend
 # !            and print the removed element
 # !   -v VAR: assign the poped element to shell
 # !           variable VAR, rather than print it
+# !   Note: if Array is empty, exit code 1.
 pop(){
   local var_flag__=0
   [ "x$1" ==  "x-v" ] && {
@@ -204,13 +205,17 @@ pop(){
   local arr__
   declare -n arr__="$1"
 
+  if [ ${#arr__[@]} -eq 0 ];then
+    return 1
+  fi
+
   if [ $var_flag__ -eq 1 ];then
     printf -v "$var_name__" "%s" "${arr__[-1]}"
   else
     printf "%s" "${arr__[-1]}"
   fi
 
-  unset 'arr[-1]'
+  unset 'arr__[-1]'
 }
 
 # test func
@@ -227,6 +232,62 @@ pop_test()(
 
 export -f pop
 #### function pop end #####
+
+
+########  function `shift_arr`: shift_arr array ########
+
+#### function shift_arr start #####
+# ! Usage: shift_arr [-v VAR] Array
+# !   Default: remove the first element of array
+# !            and print the removed element
+# !   -v VAR: assign the removed element to shell
+# !           variable VAR, rather than print it
+# !   Note: if Array is empty, exit code 1.
+shift_arr(){
+  local var_flag__=0
+  [ "x$1" ==  "x-v" ] && {
+    var_flag__=1
+    local var_name__=$2
+    shift 2
+  }
+
+  [ $# -ne 1 ] && {
+    echo "function \`${FUNCNAME[0]}' arguments wrong"
+    return 1
+  }
+
+  local arr__
+  declare -n arr__="$1"
+
+  if [ ${#arr__[@]} -eq 0 ];then
+    return 1
+  fi
+
+  if [ $var_flag__ -eq 1 ];then
+    printf -v "$var_name__" "%s" "${arr__[0]}"
+  else
+    printf "%s" "${arr__[0]}"
+  fi
+
+  # unset first element, and left move all elements
+  unset 'arr__[0]'
+  arr__=("${arr__[@]}")
+}
+
+# test func
+shift_arr_test()(
+  cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
+  [ -x "./../zoo/assert.sh" ] && source ./../zoo/assert.sh
+  local arr=(aa bb "c dd" ee)
+  local s
+  shift_arr -v s arr
+  assert_eq "$s" "aa" "shift_arr1"
+  assert_arr_eq arr '(bb "c dd" ee)' "shift_arr1"
+)
+[ "x$1" = "xtest" ] && shift_arr_test
+
+export -f shift_arr
+#### function shift_arr end #####
 
 
 

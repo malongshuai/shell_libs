@@ -3,7 +3,7 @@
 ########  function `join`: join array elements ########
 
 #### function join start #####
-# ! Desc: join array elements with specify sep__erator
+# ! Desc: join array elements with specify separator
 # ! Usage: join [-v VAR] Array_Name [Sep]
 # !   arr=(a b c d)
 # !   join arr ,      # a,b,c,d
@@ -32,17 +32,17 @@ join(){
   local arr_max_idx__
   (( arr_max_idx__=${#arr_name__[@]} - 1 ))
 
-  # default seperator: one space
+  # default separator: one space
   local sep__=${2:-" "}
 
   local joined_str__
   # join elements from idx=0 to idx=(max_idx-1)
   printf -v joined_str__ "%s${sep__}" "${arr_name__[@]:0:${arr_max_idx__}}"
   # join the last element
-  printf -v joined_str__ "%s%s" "${joined_str__}" ${arr_name__[-1]}
+  printf -v joined_str__ "%s%s" "${joined_str__}" "${arr_name__[-1]}"
 
   if [ $var_flag__ -eq 1 ];then
-    printf -v ${var_name__} "%s" "${joined_str__}"
+    printf -v "${var_name__}" "%s" "${joined_str__}"
   else
     printf "%s" "${joined_str__}"
   fi

@@ -23,7 +23,7 @@ downcase(){
   local tmp_str__=$1
 
   if [ $var_flag__ -eq 1 ];then
-    printf -v $var_name__ "%s" "${tmp_str__,,}"
+    printf -v "$var_name__" "%s" "${tmp_str__,,}"
   else
     printf "%s" "${tmp_str__,,}"
   fi

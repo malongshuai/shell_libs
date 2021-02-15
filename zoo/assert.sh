@@ -1,6 +1,5 @@
 #!/usr/bin/env bash
 
-
 if [[ -t 1 ]];then # is terminal?
   RED__="\e[0;31m";    RED_BOLD__="\e[1;31m";
   GREEN__="\e[0;32m";  GREEN_BOLD__="\e[1;32m";
@@ -63,9 +62,9 @@ assert_eq(){
 
 #### test myself
 assert_eq_test()(
-  assert_eq "$(echo hello world)" "hello world" "msg"
-  assert_eq "$(echo hello world)" "hello worl"
-  assert_eq "$(echo hello world)" "hello worl"  "msg"
+  assert_eq "hello world" "hello world" "msg"
+  assert_eq "hello world" "hello worl"
+  assert_eq "hello world" "hello worl"  "msg"
 )
 [ "x$1" == "xtest" ] && assert_eq_test
 
@@ -75,7 +74,7 @@ export -f assert_eq
 
 
 
-########  function `assert_arr_eq`: test cmd output ########
+########  function `assert_arr_eq`: test array ########
 
 #### function assert_arr_eq start ####
 # Usage: assert_arr_eq arr_name "(elem1 elem2 elem3 ...)" [Message]
@@ -114,6 +113,7 @@ assert_arr_eq(){
 
 #### test myself
 assert_arr_eq_test()(
+  local arr1
   declare -a arr1
   arr1=(a b c "d e" f)
   assert_arr_eq arr1 '(a b c "d e" f)' "arr1"
@@ -122,3 +122,4 @@ assert_arr_eq_test()(
 
 export -f assert_arr_eq
 #### function assert_arr_eq end ####
+

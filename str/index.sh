@@ -62,7 +62,7 @@ index(){
   fi
 
   if [ $var_flag__ -eq 1 ];then
-    printf -v $var_name__ "%s" $idx__
+    printf -v "$var_name__" "%s" $idx__
   else
     printf "%s" $idx__
   fi
@@ -82,10 +82,10 @@ index_test()(
   assert_eq "$(index -r 'a b' 'abcda b')" 4 "rindex3"
   assert_eq "$(index -r 'a b' 'abcdab')" -1 "rindex4"
 
-  index -v _var1 'ab' 'abcdab'
-  assert_eq "$_var1" 0 "index_var1"
-  index -v _var2 -r 'ab' 'abcdab'
-  assert_eq "$_var2" 4 "index_var2"
+  index -v var1_ 'ab' 'abcdab'
+  assert_eq "$var1_" 0 "index_var1"
+  index -v var2_ -r 'ab' 'abcdab'
+  assert_eq "$var2_" 4 "index_var2"
 )
 [ "x$1" = "xtest" ] && index_test
 

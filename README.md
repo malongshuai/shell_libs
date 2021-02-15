@@ -6,30 +6,31 @@
 
 因时间有限，目前只编写了下面这些库函数，并且尚未编写这些库函数的用法文档，因此需要大家自己去代码中查看注释(每个库函数前的注释里都有详细的用法帮助)。有时间我会将这些库函数的用法帮助提取出来作为文档。
 
-- 数组类库函数：
-  - push：向shell数组尾部push元素
-  - pop：删除shell数组最后一个元素，并输出或赋值最后一个元素
-  - unshift：向数组头部插入元素
-  - new_arr：创建数组
-  - extend：扩展数组
-  - join：根据指定连接符串联数组各元素
-- 字符串类库函数：
-  - center：将给定字符串居中
-  - chars：得到字符串各字符组成的数组
-  - downcase：转换为小写
-  - upcase：转换为大写
-  - index：从字符串中查找子串所在位置
+- 数组类库函数：  
+  - push：向shell数组尾部push元素  
+  - pop：删除shell数组最后一个元素，并输出或赋值最后一个元素  
+  - unshift：向数组头部插入元素  
+  - new_arr：创建数组  
+  - extend：扩展数组  
+  - join：根据指定连接符串联数组各元素  
+- 字符串类库函数：  
+  - center：将给定字符串居中  
+  - chars：得到字符串各字符组成的数组  
+  - downcase：转换为小写  
+  - upcase：转换为大写  
+  - index：从字符串中查找子串所在位置  
+  - index_all：从字符串中找出所有子串，输出或保存到shell数组  
   - repeat_str：重复字符串一定次数  
-  - squash：压缩连续字符，默认压缩连续空白
-  - str_slice：取字符串slice
-  - trim：修剪字符串左、右两边指定的字符串
-  - split：将字符串划分为数组
-- 其他库函数：
-  - 各类带颜色的输出：在others/colorize_output.sh中
-- 核心库函数：
-  - assert_eq：测试字符串是否相等
-  - assert_arr_eq：测试数组是否相同
-  - get_script_dir：获取当前被执行脚本所在绝对路径
-  - require：导入指定库函数文件，已导入的库文件不会重复导入
+  - squash：压缩连续字符，默认压缩连续空白  
+  - str_slice：取字符串slice  
+  - trim：修剪字符串左、右两边指定的字符串  
+  - split：将字符串划分为数组  
+- 其他库函数：  
+  - 各类带颜色的输出：在others/colorize_output.sh中  
+- 核心库函数：  
+  - assert_eq：测试字符串是否相等  
+  - assert_arr_eq：测试数组是否相同  
+  - get_script_dir：获取当前被执行脚本所在绝对路径  
+  - require：导入指定库函数文件，已导入的库文件不会重复导入  
 
 欢迎issue提出问题。

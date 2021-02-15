@@ -1,5 +1,7 @@
 # Shell(Bash)库函数
 
+![](https://raw.githubusercontent.com/malongshuai/shell_libs/main/2.gif)
+
 这些库函数完全使用bash内置命令和bash自身特性编写，未使用任何外部命令，且除了测试库函数，其他所有库函数都未使用任何影响效率的行为(例如命令替换、进程替换、管道导致的额外进程，等等)，因此，效率在shell层次上是有保证的。
 
 这些库函数可以作为一个不错的学习和深入理解bash内置特性的途径。

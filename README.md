@@ -300,13 +300,6 @@ center -l 15 -p abc " hihello "
 
 ```bash
 trim [-l] [-r] [-v Var] [Target] String
-# !     Default: trim leading and trailing whitespaces
-# !     Target: trim specify char(s). If omit,
-# !             default to trim whitespaces
-# !    -l: only trim leading chars
-# !    -r: only trim trailing chars
-# !    -v VAR: assign result to shell variable VAR,
-# !            rather than output it
 ```
 
 修剪String字符串左边和右边的字符。

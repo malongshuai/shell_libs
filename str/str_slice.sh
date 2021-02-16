@@ -149,7 +149,7 @@ str_slice_test()(
   assert_eq "$(str_slice 1..-7 "${test_str__}")" "1234567890ab" "str_slice 12"
   assert_eq "$(str_slice -7.. "${test_str__}")" "bcdefgh" "str_slice 13"
   assert_eq "$(str_slice ..-7 "${test_str__}")" "01234567890ab" "str_slice 14"
-  assert_eq "$(str_slice -10..-7 "${test_str__}")" "90ab" "str_slice 14"
+  assert_eq "$(str_slice -10..-7 "${test_str__}")" "90ab" "str_slice 15"
 
   local s__
   str_slice -v s__ -7 -2 "${test_str__}"

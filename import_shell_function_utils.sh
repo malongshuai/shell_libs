@@ -9,7 +9,7 @@
 utils_dir="/etc/profile.d/utils"
 utils_load_path="/etc/profile.d/import_shell_function_utils.sh"
 
-[ -x "${utils_dir}" ] || sudo mkdir "$utils_dir"
+sudo rm -rf "${utils_dir}" && sudo mkdir "$utils_dir"
 
 [ -x "${utils_load_path}" ] || {
   sudo touch "$utils_load_path"

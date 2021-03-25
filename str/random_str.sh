@@ -78,5 +78,5 @@ random_str(){
   fi
 }
 
-export -f chars
-#### function chars end #####
+export -f random_str
+#### function random_str end #####

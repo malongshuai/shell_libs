@@ -38,7 +38,7 @@ upcase_test()(
   upcase -v s__ "Hello World"
   assert_eq "$s__" "HELLO WORLD" "upcase 2"
 )
-[ "x$1" = "xtest" ] && upcase_test
+[ "x$1" = "xtest" ] && upcase_test; unset upcase_test
 
 export -f upcase
 #### function upcase end #####

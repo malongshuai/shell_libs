@@ -52,7 +52,7 @@ squash(){
   local str__="$1"
 
   # first: trim leading and trailing chars
-  if [ $squash_all__ -eq 1 ];then
+  if ((squash_all__ == 1));then
     # trim leading chars
     str__="${str__#"${str__%%[^${squash_char__}]*}"}"
     # trim trailing chars
@@ -89,7 +89,7 @@ squash_test()(
   assert_eq "$(squash -s "," ",,a,,b,,c,," )" ",a,b,c,"  "squash5"
   assert_eq "$(squash -s ",-" ',,-a,,--b,,c,,' )" ",-a,--b,c,"  "squash6"
 )
-[ "x$1" = "xtest" ] && squash_test
+[ "x$1" = "xtest" ] && squash_test; unset squash_test
 
 export -f squash
 #### function squash end #####

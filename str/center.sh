@@ -46,7 +46,7 @@ center(){
   local tmp_str_len__=${#tmp_str__}
   local left_cnt__=$(( (len__ - tmp_str_len__) / 2 ))
   local right_cnt__=${left_cnt__}
-  if [ $(( (len__ - tmp_str_len__) % 2)) -eq 1 ];then
+  if (( (len__ - tmp_str_len__) % 2 == 1));then
     ((left_cnt__++))
   fi
 
@@ -76,7 +76,7 @@ center_test()(
   center -v s__ -l 15 "hell"
   assert_eq "${s__}" "      hell     " "center4"
 )
-[ "x$1" = "xtest" ] && center_test
+[ "x$1" = "xtest" ] && center_test; unset center_test
 
 export -f center
 #### function center end #####

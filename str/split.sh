@@ -21,7 +21,6 @@ split(){
     return 1
   fi
 
-  local arr_name__
   declare -n arr_name__=$2
   shift 2
 
@@ -59,7 +58,7 @@ split_test()(
   split -v arr1 ' abc  def  ghi  jkl  '
   assert_arr_eq arr1 '(abc def ghi jkl)' 'split 2'
 )
-[ "x$1" = "xtest" ] && split_test
+[ "x$1" = "xtest" ] && split_test; unset split_test
 
 export -f split
 #### function split end #####

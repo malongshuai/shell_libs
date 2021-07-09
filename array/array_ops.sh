@@ -44,7 +44,7 @@ new_arr_test()(
   new_arr arr1 '(a b c)'
   assert_arr_eq arr1 '(a b c)'   "new_arr 1"
 )
-[ "x$1" = "xtest" ] && new_arr_test
+[ "x$1" = "xtest" ] && new_arr_test; unset new_arr_test
 
 export -f new_arr
 #### function new_arr end #####
@@ -69,7 +69,6 @@ push(){
     return 1
   }
 
-  local arr__
   declare -n arr__="$1"
   shift
 
@@ -83,7 +82,6 @@ push(){
 push_test()(
   cd "$(dirname "$(realpath "${BASH_SOURCE[0]}")")"
   [ -x "./../zoo/assert.sh" ] && source ./../zoo/assert.sh
-  local arr1
   declare -a arr1
   push arr1 a b 'c d' e
   assert_arr_eq arr1 '(a b "c d" e)'   "push1"
@@ -91,7 +89,7 @@ push_test()(
   push arr1 aa bb cc
   assert_arr_eq arr1 '(a b "c d" e aa bb cc)' "push2"
 )
-[ "x$1" = "xtest" ] && push_test
+[ "x$1" = "xtest" ] && push_test; unset push_test
 
 export -f push
 #### function push end #####
@@ -120,7 +118,6 @@ extend(){
     return 1
   }
 
-  local _arr__
   declare -n _arr__="$1"
   shift
 
@@ -137,7 +134,6 @@ extend(){
     if [ "x${_a__:0:1}" == "x(" ] && [ "x${_a__: -1:1}" == "x)" ];then
       eval _arr__+="${_a__}"
     else  # given parameter is array name
-      local _tmp_arr__
       declare -n _tmp_arr__="$_a__"
       for _e__ in "${_tmp_arr__[@]}";do
         _arr__[${#_arr__[@]}]="${_e__}"
@@ -174,7 +170,7 @@ extend_test(){
     assert_arr_eq xyz2 '(a "b c" d aa bb aa bb)'   "extend4"
   )
 }
-[ "x$1" = "xtest" ] && extend_test
+[ "x$1" = "xtest" ] && extend_test; unset extend_test
 
 export -f extend
 #### function extend end #####
@@ -202,7 +198,6 @@ pop(){
     return 1
   }
 
-  local arr__
   declare -n arr__="$1"
 
   if [ ${#arr__[@]} -eq 0 ];then
@@ -228,7 +223,7 @@ pop_test()(
   assert_eq "$s" "c dd" "pop1"
   assert_arr_eq arr '(aa bb)' "pop1"
 )
-[ "x$1" = "xtest" ] && pop_test
+[ "x$1" = "xtest" ] && pop_test; unset pop_test
 
 export -f pop
 #### function pop end #####
@@ -256,7 +251,6 @@ shift_arr(){
     return 1
   }
 
-  local arr__
   declare -n arr__="$1"
 
   if [ ${#arr__[@]} -eq 0 ];then
@@ -284,12 +278,10 @@ shift_arr_test()(
   assert_eq "$s" "aa" "shift_arr1"
   assert_arr_eq arr '(bb "c dd" ee)' "shift_arr1"
 )
-[ "x$1" = "xtest" ] && shift_arr_test
+[ "x$1" = "xtest" ] && shift_arr_test; unset shift_arr_test
 
 export -f shift_arr
 #### function shift_arr end #####
-
-
 
 
 ########  function `unshift`: unshift array ########
@@ -302,7 +294,6 @@ unshift(){
     return 1
   }
 
-  local arr_name__
   declare -n arr_name__="$1"
   shift
 
@@ -323,7 +314,7 @@ unshift_test()(
   unshift arr2 "a" "b" "c"
   assert_arr_eq arr2 '(a b c)'
 )
-[ "x$1" == "xtest" ] && unshift_test
+[ "x$1" == "xtest" ] && unshift_test; unset unshift_test
 
 
 export -f  unshift

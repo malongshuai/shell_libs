@@ -22,10 +22,9 @@ repeat_str(){
   local str__=$1
 
   # cnt__ must be integer and great than 0
-  local cnt__
   declare -i cnt__
   cnt__=$2
-  [ ${cnt__} -le 0 ] && return
+  ((cnt__ <= 0)) && return
 
   if [ ${var_flag__} -eq 1 ];then
     eval printf -v ${var_name__} -- "${str__}%.0s" {1..${cnt__}}
@@ -41,7 +40,7 @@ repeat_str_test()(
   assert_eq "$(repeat_str - 5)" "-----" "repeat_str1"
   assert_eq "$(repeat_str ab 3)" "ababab" "repeat_str2"
 )
-[ "x$1" == "xtest" ] && repeat_str_test
+[ "x$1" == "xtest" ] && repeat_str_test; unset repeat_str_test
 
 export -f repeat_str
 #### function repeat_str end ####

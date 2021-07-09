@@ -43,7 +43,7 @@ chars_test()(
   chars -v arr 'a你 b d'
   assert_arr_eq arr '(a 你 " " b " " d)' "chars2"
 )
-[ "x$1" = "xtest" ] && chars_test
+[ "x$1" = "xtest" ] && chars_test; unset chars_test
 
 export -f chars
 #### function chars end #####

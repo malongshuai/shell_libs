@@ -26,7 +26,7 @@ rand(){
   (($1+0)) &>/dev/null && n__=$1
 
   if [ ${var_flag__} -eq 1 ]; then
-    printf -v "${var_name__}" "%d" $(( RANDOM % n__ ))
+    printf -v "${var_name__}" "%d" $((RANDOM % n__))
   else
     printf "%d" $(( RANDOM % n__ ))
   fi

@@ -45,7 +45,6 @@ slice(){
     return 1
   }
 
-  local arr_name__
   declare -n arr_name__=$2
   shift 2
 
@@ -72,7 +71,7 @@ slice(){
     shopt -s extglob
 
     # calling: ${FUNCNAME[0]} [-v VAR] Start Str
-    if [ "x${tmp_idx__//?(-)+([0-9])/}" == "x"  ]; then
+    if [ "x${tmp_idx__//?(-)+([0-9])/}" == "x" ]; then
       min_idx__=${tmp_idx__}
       max_idx__=$(( ${#tmp_arr__[@]} - 1 ))
     # calling: ${FUNCNAME[0]} [-v VAR] Start..End Str
@@ -100,23 +99,23 @@ slice(){
     declare -n tmp_arr__=$3
     min_idx__=$1
 
-    if [ $(($2+0)) -ge 0 ];then
+    if (($2 >= 0));then
       max_idx__=$(( min_idx__ + $2 - 1 ))
-    elif [ $(($2+0)) -lt 0 ];then
+    elif (($2 < 0));then
       max_idx__=$(( ${#tmp_arr__[@]} + $2 - 1 ))
     fi
   fi
 
-  if [ $(( min_idx__ + 0)) -lt 0 ];then
+  if ((min_idx__ < 0));then
     min_idx__=$(( ${#tmp_arr__[@]} + min_idx__ ))
   fi
 
-  if [ $(( max_idx__ + 0)) -lt 0 ];then
+  if (( max_idx__ < 0 ));then
     max_idx__=$(( ${#tmp_arr__[@]} + max_idx__ ))
   fi
 
   subarr_len__=$((max_idx__ - min_idx__ + 1))
-  [ $((subarr_len__+0)) -lt 0 ] && {
+  ((subarr_len__ < 0)) && {
     echo "range error"
     return 1
   }
@@ -162,7 +161,7 @@ slice_test()(
   slice -v res_arr__ -10..-7 test_arr__
   assert_arr_eq res_arr__ "(9 0 a b)" "slice 15"
 )
-[ "x$1" = "xtest" ] && slice_test
+[ "x$1" = "xtest" ] && slice_test; unset slice_test
 
 export -f slice
 #### function slice end #####

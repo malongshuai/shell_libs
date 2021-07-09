@@ -44,7 +44,7 @@ trim(){
   done
 
   # default: left trim and right trim
-  if [ $((0+ltrim__)) -eq 0 ] && [ $((0+rtrim__)) -eq 0 ];then
+  if ((ltrim__ == 0)) && ((rtrim__ == 0));then
     ltrim__=1
     rtrim__=1
   fi
@@ -53,12 +53,12 @@ trim(){
 
   # default: trim whitespace
   if [ "x${target__}" = "x[:space:]" ];then
-    [ "${ltrim__}" -eq 1 ] && str__="${str__#"${str__%%[^[:space:]]*}"}"
-    [ "${rtrim__}" -eq 1 ] && str__="${str__%"${str__##*[^[:space:]]}"}"
+    (( ltrim__ == 1 )) && str__="${str__#"${str__%%[^[:space:]]*}"}"
+    (( rtrim__ == 1 )) && str__="${str__%"${str__##*[^[:space:]]}"}"
   else
     shopt -s extglob
-    [ "${rtrim__}" -eq 1 ] && str__="${str__%%+("${target__}")}"
-    [ "${ltrim__}" -eq 1 ] && str__="${str__##+("${target__}")}"
+    (( rtrim__ == 1 )) && str__="${str__%%+("${target__}")}"
+    (( ltrim__ == 1 )) && str__="${str__##+("${target__}")}"
     shopt -u extglob
   fi
 
@@ -90,7 +90,7 @@ trim_test()(
   assert_eq "$(trim 'xy' 'xyxya bxyxy')" "a b"   "trim chars 3"
   assert_eq "$(trim 'xy' 'a b')" "a b"   "trim chars 4"
 )
-[ "x$1" = "xtest" ] && trim_test
+[ "x$1" = "xtest" ] && trim_test; unset trim_test
 
 export -f trim
 #### function trim end #####

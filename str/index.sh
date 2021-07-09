@@ -49,7 +49,7 @@ index(){
   local _str__
   
   # if substr not found in string, idx=-1
-  if [ $rindex__ -eq 1 ];then
+  if ((rindex__ == 1 ));then
     _str__="${str__%${substr__}*}"
     [ ${#_str__} -ne ${#str__} ] \
       && idx__=$(( ${#_str__} )) \
@@ -87,7 +87,7 @@ index_test()(
   index -v var2_ -r 'ab' 'abcdab'
   assert_eq "$var2_" 4 "index_var2"
 )
-[ "x$1" = "xtest" ] && index_test
+[ "x$1" = "xtest" ] && index_test; unset index_test
 
 export -f index
 #### function index end #####
@@ -155,7 +155,7 @@ index_all_test()(
   index_all -v _arr1 'ab' 'abcdab'
   assert_arr_eq _arr1 '(0 4)' "index_all_var1"
 )
-[ "x$1" = "xtest" ] && index_all_test
+[ "x$1" = "xtest" ] && index_all_test; unset index_all_test
 
 export -f index_all
 #### function index_all end #####

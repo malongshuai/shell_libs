@@ -29,7 +29,7 @@ is_int_test()(
   is_int
   assert_eq "$?" 1 "is_int6"
 )
-[ "x$1" = "xtest" ] && is_int_test
+[ "x$1" = "xtest" ] && is_int_test; unset is_int_test
 
 export -f is_int
 #### function is_int end #####

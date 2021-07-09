@@ -66,7 +66,7 @@ assert_eq_test()(
   assert_eq "hello world" "hello worl"
   assert_eq "hello world" "hello worl"  "msg"
 )
-[ "x$1" == "xtest" ] && assert_eq_test
+[ "x$1" == "xtest" ] && assert_eq_test; unset assert_eq_test
 
 
 export -f assert_eq
@@ -118,7 +118,7 @@ assert_arr_eq_test()(
   arr1=(a b c "d e" f)
   assert_arr_eq arr1 '(a b c "d e" f)' "arr1"
 )
-[ "x$1" == "xtest" ] && assert_arr_eq_test
+[ "x$1" == "xtest" ] && assert_arr_eq_test; unset assert_arr_eq_test
 
 export -f assert_arr_eq
 #### function assert_arr_eq end ####

@@ -100,28 +100,28 @@ str_slice(){
     tmp_str__=$3
     min_idx__=$1
 
-    if [ $(($2+0)) -ge 0 ];then
+    if (($2 >= 0));then
       max_idx__=$(( min_idx__ + $2 - 1 ))
     elif [ $(($2+0)) -lt 0 ];then
       max_idx__=$(( ${#tmp_str__} + $2 - 1 ))
     fi
   fi
 
-  if [ $(( min_idx__ + 0)) -lt 0 ];then
+  if (( min_idx__ < 0 ));then
     min_idx__=$(( ${#tmp_str__} + min_idx__ ))
   fi
 
-  if [ $(( max_idx__ + 0)) -lt 0 ];then
+  if (( max_idx__ < 0)) ;then
     max_idx__=$(( ${#tmp_str__} + max_idx__ ))
   fi
 
   substr_len__=$((max_idx__ - min_idx__ + 1))
-  [ $((substr_len__+0)) -lt 0 ] && {
+  ((substr_len__ < 0 )) && {
     echo "range error"
     return 1
   }
 
-  if [ ${var_flag__} -eq 1 ];then
+  if ((var_flag__ == 1));then
     printf -v "${var_name__}" "%s" "${tmp_str__: ${min_idx__}:${substr_len__}}"
   else
     printf "%s" "${tmp_str__: ${min_idx__}:${substr_len__}}"
@@ -155,7 +155,7 @@ str_slice_test()(
   str_slice -v s__ -7 -2 "${test_str__}"
   assert_eq "${s__}" "bcdef" "str_slice 15"
 )
-[ "x$1" = "xtest" ] && str_slice_test
+[ "x$1" = "xtest" ] && str_slice_test; unset str_slice_test
 
 export -f str_slice
 #### function str_slice end #####

@@ -38,7 +38,7 @@ downcase_test()(
   downcase -v s__ "Hello World"
   assert_eq "$s__" "hello world" "downcase 2"
 )
-[ "x$1" = "xtest" ] && downcase_test
+[ "x$1" = "xtest" ] && downcase_test; unset downcase_test
 
 export -f downcase
 #### function downcase end #####

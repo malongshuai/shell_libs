@@ -16,11 +16,11 @@ git clone https://github.com/malongshuai/shell_libs.git
 cd shell_libs
 ```
 
-执行`import_shell_function_utils.sh`：
+执行`import_shell_libs.sh`：
 ```bash
-bash import_shell_function_utils.sh
+bash import_shell_libs.sh
 ```
-这将会拷贝所有的库函数文件(除`import_shell_function_utils.sh`外)到`/etc/profile.d/utils`目录，并生成`/etc/profile.d/import_shell_function_utils.sh`文件，该文件用于加载拷贝到utils目录下的所有库文件。
+这将会拷贝所有的库函数文件(除`import_shell_libs.sh`外)到`/etc/profile.d/shell_libs`目录，并生成`/etc/profile.d/import_shell_libs.sh`文件，该文件用于加载拷贝到shell_libs目录下的所有库文件。
 
 重新登录bash(以及以后每次登录bash)，将加载这些库函数文件。
 ```bash
@@ -34,7 +34,7 @@ rand 100   # 生成0到100(不包括100)之间的随机整数
 
 如果要在脚本中使用这些库函数，则在脚本中加上如下一行手动source加载库文件。
 ```bash
-source /etc/profile.d/import_shell_function_utils.sh
+source /etc/profile.d/import_shell_libs.sh
 ```
 
 # 库函数文档

@@ -27,7 +27,6 @@ join(){
     shift 2
   }
 
-  local arr_name__
   declare -n arr_name__=$1
   local arr_max_idx__
   (( arr_max_idx__=${#arr_name__[@]} - 1 ))
@@ -58,7 +57,7 @@ join_test()(
   assert_eq "$(join arr ,)" "a,b,c,d" "join2"
   assert_eq "$(join arr --)" 'a--b--c--d' "join3"
 )
-[ "x$1" = "xtest" ] && join_test
+[ "x$1" = "xtest" ] && join_test; unset join_test
 
 export -f join
 #### function join end #####

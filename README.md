@@ -24,7 +24,7 @@ bash import_shell_libs.sh
 
 重新登录bash(以及以后每次登录bash)，将加载这些库函数文件。
 ```bash
-exec bash
+exec bash -l
 ```
 
 现在可以使用这些库函数。例如使用库函数rand生成指定范围内的随机整数：

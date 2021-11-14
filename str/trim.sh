@@ -78,7 +78,6 @@ trim_test()(
   assert_eq "$(trim -r '  a b  ')"    "  a b" "trim whitespace3"
   assert_eq "$(trim -r -l '  a b  ')" "a b"   "trim whitespace4"
 
-
   assert_eq "$(trim 'x' 'xa bx')" "a b"   "trim single char 1"
   assert_eq "$(trim 'x' 'xxa bxx')" "a b"   "trim single char 2"
   assert_eq "$(trim -l 'x' 'xxa bxx')" "a bxx"   "trim single char 3"

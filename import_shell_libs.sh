@@ -34,7 +34,8 @@ EOF
 # 拷贝脚本库到/etc/profile.d/utils目录下
 (
   cd "$(dirname "$(realpath "$0")" )"
-  sudo /bin/cp -fav ./* "${utils_dir}"
+  find . -mindepth 1 -type d -not -path "*/.*" | sudo xargs -i /bin/cp -fav {} "${utils_dir}"
+#  sudo /bin/cp -fav ./!(import_shell_libs.sh) "${utils_dir}"
   sudo rm -rf "/etc/profile.d/utils/import_shell_libs.sh"
   sudo chmod -R +x "${utils_dir}"
 )
